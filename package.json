@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "source .env.local && next dev",
     "build": "next build",
-    "start": "dotenv -- next start",
+    "start": "source .env && next start",
     "lint": "next lint"
   },
   "dependencies": {

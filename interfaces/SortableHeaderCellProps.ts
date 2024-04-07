@@ -6,7 +6,7 @@ interface SortableHeaderCellProps {
   label: string;
   sortColumn: keyof Team | null;
   sortOrder: 'asc' | 'desc';
-  handleSort: (column: keyof Team | null, order: 'asc' | 'desc') => void; // Update the function signature here
+  handleSort: (sortParams: { column: keyof Team | null; order: 'asc' | 'desc' }) => void;
 }
 
 export default SortableHeaderCellProps;

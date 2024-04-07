@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[520],{9302:function(n,u,c){(window.__NEXT_P=window.__NEXT_P||[]).push(["/scores",function(){return c(6012)}])},6012:function(n,u,c){"use strict";c.r(u);var e=c(5893);u.default=()=>(0,e.jsx)("div",{children:(0,e.jsx)("h1",{children:"Scores"})})}},function(n){n.O(0,[888,774,179],function(){return n(n.s=9302)}),_N_E=n.O()}]);

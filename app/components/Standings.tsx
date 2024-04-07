@@ -38,13 +38,12 @@ const Standings: React.FC = () => {
 
   const handleConferenceFilterChange = (value: string) => {
     setConferenceFilter(value);
-    setDivisionFilter('All'); // Reset division filter to "All" when conference filter changes
+    setDivisionFilter('All');
   };
 
 
   const handleDivisionFilterChange = (value: string) => {
     setDivisionFilter(value);
-    // Find the corresponding conference for the selected division
     const selectedDivisionTeam = standings.find(team => team.divisionName === value);
     if (selectedDivisionTeam) {
       setConferenceFilter(selectedDivisionTeam.conferenceName);
@@ -83,28 +82,32 @@ const Standings: React.FC = () => {
   return (
     <div className="overflow-x-auto">
       <div className="flex justify-center space-x-4 mb-4">
-        <select
-          value={conferenceFilter}
-          onChange={e => handleConferenceFilterChange(e.target.value)}
-          className="border border-gray-300 px-4 py-2 rounded"
-          id="selectConference"
-        >
-          {conferences.map((conference, index) => (
-            <option key={index} value={conference}>{conference}</option>
-          ))}
-        </select>
-        <select
-          value={divisionFilter}
-          onChange={e => handleDivisionFilterChange(e.target.value)}
-          className="border border-gray-300 px-4 py-2 rounded"
-          id="selectDivision"
-        >
-          {conferenceFilter === 'All' ? divisions.map((division, index) => (
-            <option key={index} value={division}>{division}</option>
-          )) : ['All', ...Array.from(new Set(standings.filter(team => team.conferenceName === conferenceFilter).map(team => team.divisionName)))].map((division, index) => (
-            <option key={index} value={division}>{division}</option>
-          ))}
-        </select>
+        <div className="flex items-center">
+          <label htmlFor="selectConference" className="px-4">Conference:</label>
+          <select
+            value={conferenceFilter}
+            onChange={e => handleConferenceFilterChange(e.target.value)}
+            className="border border-gray-300 px-4 py-2 rounded"
+            id="selectConference"
+          >
+            {conferences.map((conference, index) => (
+              <option key={index} value={conference}>{conference}</option>
+            ))}
+          </select>
+          <label htmlFor="selectDivision" className="px-4">Division:</label>
+          <select
+            value={divisionFilter}
+            onChange={e => handleDivisionFilterChange(e.target.value)}
+            className="border border-gray-300 px-4 py-2 rounded"
+            id="selectDivision"
+          >
+            {conferenceFilter === 'All' ? divisions.map((division, index) => (
+              <option key={index} value={division}>{division}</option>
+            )) : ['All', ...Array.from(new Set(standings.filter(team => team.conferenceName === conferenceFilter).map(team => team.divisionName)))].map((division, index) => (
+              <option key={index} value={division}>{division}</option>
+            ))}
+          </select>
+        </div>
       </div>
       <table className="w-full border-collapse table-fixed table-zebra table-pin-rows table-pin-cols">
         <thead className="bg-neutral">
