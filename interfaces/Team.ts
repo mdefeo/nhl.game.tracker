@@ -1,3 +1,4 @@
+// /interfaces/Team.ts
 interface Team {
   id: number;
   placeName: any;

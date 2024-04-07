@@ -1,3 +1,4 @@
+// /interfaces/StandingsProps.ts
 import SortColumn from './SortColumn';
 
 interface StandingsProps {

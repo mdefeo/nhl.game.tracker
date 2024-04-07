@@ -1,3 +1,4 @@
+// /interfaces/SortableHeaderCellProps.ts
 import Team from './Team';
 
 interface SortableHeaderCellProps {
@@ -5,7 +6,7 @@ interface SortableHeaderCellProps {
   label: string;
   sortColumn: keyof Team | null;
   sortOrder: 'asc' | 'desc';
-  handleSort: (column: keyof Team | null) => void;
+  handleSort: (sortParams: { column: keyof Team | null; order: 'asc' | 'desc' }) => void;
 }
 
 export default SortableHeaderCellProps;
