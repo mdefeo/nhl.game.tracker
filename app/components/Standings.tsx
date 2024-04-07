@@ -1,3 +1,4 @@
+// /app/components/Standings.tsx
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { fetchDataFromApi } from '@/app/helpers/api';
@@ -35,41 +36,38 @@ const Standings: React.FC = () => {
     fetchData();
   }, []);
 
-
   const handleConferenceFilterChange = (value: string) => {
     setConferenceFilter(value);
-    if (value === 'All') {
-      setDivisionFilter('All');
-    }
+    setDivisionFilter('All'); // Reset division filter to "All" when conference filter changes
   };
+
 
   const handleDivisionFilterChange = (value: string) => {
     setDivisionFilter(value);
-  };
-
-  const handleSort = (column: keyof Team | null) => {
-    if (sortColumn === column) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortOrder('asc');
+    // Find the corresponding conference for the selected division
+    const selectedDivisionTeam = standings.find(team => team.divisionName === value);
+    if (selectedDivisionTeam) {
+      setConferenceFilter(selectedDivisionTeam.conferenceName);
     }
   };
 
+  const handleSort = ({ column, order }: { column: keyof Team | null; order: 'asc' | 'desc' }) => {
+    setSortColumn(column);
+    setSortOrder(order);
+  };
+
+
   const sortedStandings = standings.slice().sort((a, b) => {
     if (sortColumn !== null) {
-      if (sortOrder === 'asc') {
-        if (typeof a[sortColumn] === 'number' && typeof b[sortColumn] === 'number') {
-          return a[sortColumn] - b[sortColumn];
-        } else {
-          return String(a[sortColumn]).localeCompare(String(b[sortColumn]));
-        }
+      const aValue = a[sortColumn];
+      const bValue = b[sortColumn];
+
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       } else {
-        if (typeof a[sortColumn] === 'number' && typeof b[sortColumn] === 'number') {
-          return b[sortColumn] - a[sortColumn];
-        } else {
-          return String(b[sortColumn]).localeCompare(String(a[sortColumn]));
-        }
+        const aString = String(aValue);
+        const bString = String(bValue);
+        return sortOrder === 'asc' ? aString.localeCompare(bString) : bString.localeCompare(aString);
       }
     } else {
       return 0;
@@ -108,7 +106,7 @@ const Standings: React.FC = () => {
           ))}
         </select>
       </div>
-      <table className="w-full border-collapse table-auto table-zebra table-pin-cols">
+      <table className="w-full border-collapse table-fixed table-zebra table-pin-rows table-pin-cols">
         <thead className="bg-neutral">
           <tr>
             <SortableHeaderCell columnName="teamName" label="Team" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
@@ -117,8 +115,6 @@ const Standings: React.FC = () => {
             <SortableHeaderCell columnName="goalFor" label="GF" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
             <SortableHeaderCell columnName="goalAgainst" label="GA" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
             <SortableHeaderCell columnName="goalDifferential" label="DIFF" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="conferenceName" label="Conference" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="divisionName" label="Division" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
           </tr>
         </thead>
         <tbody className="text-sm text-left">
@@ -136,8 +132,6 @@ const Standings: React.FC = () => {
                 <td className="p-6 whitespace-nowrap">{team.goalFor}</td>
                 <td className="p-6 whitespace-nowrap">{team.goalAgainst}</td>
                 <td className="p-6 whitespace-nowrap">{team.goalDifferential}</td>
-                <td className="p-6 whitespace-nowrap">{team.conferenceName}</td>
-                <td className="p-6 whitespace-nowrap">{team.divisionName}</td>
               </tr>
             );
           })}

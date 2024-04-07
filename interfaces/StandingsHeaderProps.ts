@@ -1,3 +1,4 @@
+// /interfaces/StandingsHeaderProps.ts
 import Team from './Team';
 
 interface StandingsHeaderProps {

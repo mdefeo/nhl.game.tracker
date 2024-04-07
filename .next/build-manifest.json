@@ -26,11 +26,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/players": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/players.js"
-    ],
     "/standings": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

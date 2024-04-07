@@ -16,7 +16,7 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata = {}, children }) => {
   const title = typeof metadata.title === 'string' ? metadata.title : 'Fallback Title';
 
   return (
-    <div className={`${inter.className} container  m-auto pb-20`}>
+    <div className={`${inter.className} container m-auto pb-20`}>
       <NavBar />
       {children}
       <FooterNav />

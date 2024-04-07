@@ -1,3 +1,4 @@
+// /interfaces/TableHeaderColumnProps.ts
 import Team from './Team';
 interface TableHeaderColumnProps {
   label: string;

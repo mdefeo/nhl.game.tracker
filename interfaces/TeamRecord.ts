@@ -1,3 +1,4 @@
+// /interfaces/TeamRecord.ts
 interface TeamRecord {
   team: {
     id: number;

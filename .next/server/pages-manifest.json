@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/standings": "pages/standings.js",
   "/players": "pages/players.js",
-  "/api/proxy": "pages/api/proxy.js"
+  "/api/proxy": "pages/api/proxy.js",
+  "/standings": "pages/standings.js"
 }
