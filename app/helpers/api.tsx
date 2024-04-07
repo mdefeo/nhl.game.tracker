@@ -1,9 +1,9 @@
 // /app/helpers/api.tsx
 export const fetchDataFromApi = async (url: string) => {
   try {
-    const API_URL_BASE = process.env.API_URL_BASE;
-    const API_FULL_URL =`/api/proxy?url=${API_URL_BASE + url}`;
-    const response = await fetch(API_FULL_URL);
+    const apiUrl =`/api/proxy?url=${url}`;
+    // console.log('---API_FULL_URL: ', apiUrl);
+    const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }

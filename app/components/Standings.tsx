@@ -18,9 +18,7 @@ const Standings: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const today = new Date();
-        const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-        const data = await fetchDataFromApi(`standings/${formattedDate}`);
+        const data = await fetchDataFromApi(`https://api-web.nhle.com/v1/standings/now`);
         setStandings(data.standings);
 
         const uniqueConferences = ['All', ...new Set<string>(data.standings.map((team: Team) => team.conferenceName))];
