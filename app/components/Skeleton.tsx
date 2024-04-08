@@ -1,4 +1,4 @@
-const Sekeleton: React.FC = () => {
+const Skeleton: React.FC = () => {
   return( 
     <div className="flex flex-col gap-4 w-full">
       <div className="skeleton h-8 w-full"></div>
@@ -9,4 +9,4 @@ const Sekeleton: React.FC = () => {
   );
 };
 
-export default Sekeleton;
+export default Skeleton;

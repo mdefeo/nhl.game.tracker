@@ -52,7 +52,7 @@ const Goalies: React.FC<Props> = ({ goalies }) => {
                       </div>
                     </div>
                     <div>
-                      <Link href={`/player/${goalie.playerId}`}>
+                      <Link href={`/goalie/${goalie.playerId}`}>
                         {`${goalie.firstName.default} ${goalie.lastName.default}`}
                       </Link>
                     </div>

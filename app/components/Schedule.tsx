@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image'; // Import Image from next/image
 import Link from 'next/link';
 import { fetchDataFromApi } from '@/app/helpers/api';
-import Sekeleton from './Skeleton';
+import Skeleton from './Skeleton';
 
 const Schedule: React.FC = () => {
   const [gameWeek, setGameWeek] = useState<any[]>([]);
@@ -23,7 +23,7 @@ const Schedule: React.FC = () => {
   }, [today]); // Trigger useEffect whenever 'today' changes
 
   if (!gameWeek) {
-    return <Sekeleton />
+    return <Skeleton />
   }
 
   return (

@@ -1,6 +1,6 @@
 // /pages/players.tsx
 import Headline from '@/app/components/Headline';
-import Players from '@/app/components/Players';
+import Players from '@/app/components/Player';
 import { useRouter } from 'next/router';
 
 const PlayersPage = () => {
@@ -9,7 +9,7 @@ const PlayersPage = () => {
 
   return (
     <div>
-      <Headline title="Players" />
+      <Headline title="Player" />
       <Players playerId={playerId as string} />
     </div>
   );

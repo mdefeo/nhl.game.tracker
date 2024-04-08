@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fetchDataFromApi } from '@/app/helpers/api';
-import Sekeleton from './Skeleton';
+import Skeleton from './Skeleton';
 
 const Scores: React.FC = () => {
   const [games, setGames] = useState<any[]>([]);
@@ -28,7 +28,7 @@ const Scores: React.FC = () => {
   }, []);
 
   if (!games) {
-    return <Sekeleton />
+    return <Skeleton />
   }
 
   return (
