@@ -1,8 +1,9 @@
 // /app/components/Schedule.tsx
 import React, { useState, useEffect } from 'react';
-import { fetchDataFromApi } from '@/app/helpers/api';
 import Image from 'next/image'; // Import Image from next/image
 import Link from 'next/link';
+import { fetchDataFromApi } from '@/app/helpers/api';
+import Sekeleton from './Skeleton';
 
 const Schedule: React.FC = () => {
   const [gameWeek, setGameWeek] = useState<any[]>([]);
@@ -22,14 +23,7 @@ const Schedule: React.FC = () => {
   }, [today]); // Trigger useEffect whenever 'today' changes
 
   if (!gameWeek) {
-    return( 
-      <div className="flex flex-col gap-4 w-full">
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-      </div>
-    );
+    return <Sekeleton />
   }
 
   return (

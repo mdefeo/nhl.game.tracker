@@ -11,7 +11,8 @@ const NavBarClientSide: React.FC = () => {
     if (router) {
       setActivePage(router.pathname);
     }
-  }, [router.pathname]);
+  }, [router]);
+
 
   const isActive = (pathname: string) => {
     return activePage === pathname ? 'active' : '';

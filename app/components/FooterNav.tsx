@@ -1,12 +1,10 @@
 // /app/components/FooterNav.tsx
 import React from 'react';
-import Link from 'next/link';
 
 interface Props {
-  // Define props interface here
 }
 
-const FooterNav: React.FC<Props> = ({ /* destructure props here */ }) => {
+const FooterNav: React.FC<Props> = ({ }) => {
   return (
 
   <footer className="footer p-10 mt-10 bg-base-300 text-base-content">
