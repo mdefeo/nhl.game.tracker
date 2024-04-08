@@ -1,1 +1,29 @@
-node_modules
+# Dependency directories
+node_modules/
+.cache/
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled files
+dist/
+build/
+*.log
+.next
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Miscellaneous
+*.zip
+*.gz
+*.tar
+*.rar

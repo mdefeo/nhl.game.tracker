@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { fetchDataFromApi } from '@/app/helpers/api';
 import SortableHeaderCell from './SortableHeaderCell';
-import Sekeleton from './Skeleton';
+import Skeleton from './Skeleton';
 import Team from '@/interfaces/Team';
 import SortColumn from '@/interfaces/SortColumn';
 
@@ -56,7 +56,7 @@ const Standings: React.FC = () => {
     });
 
   if (!standings.length) {
-    return <Sekeleton />
+    return <Skeleton />
   }
 
   return (
