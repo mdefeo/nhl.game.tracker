@@ -4,9 +4,9 @@ interface PlayerStats {
   assists: number;
   points: number;
   plusMinus: number;
-  pim: number; // Penalty Minutes
+  pim: number;
   gameWinningGoals: number;
-  otGoals: number; // Overtime Goals
+  otGoals: number;
   shots: number;
   powerPlayGoals: number;
   powerPlayPoints: number;

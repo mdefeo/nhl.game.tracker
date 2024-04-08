@@ -1,8 +1,8 @@
 export interface FeaturedStats {
-  season: number; // Assuming season is just a year here, based on your JSON
+  season: number;
   regularSeason: {
-    subSeason: PlayerStat; // Subseason stats as per the provided JSON structure
-    career: PlayerStat; // Career stats within the same season context
+    subSeason: PlayerStat;
+    career: PlayerStat;
   };
 }
 
@@ -21,7 +21,6 @@ export interface PlayerStat {
   powerPlayPoints: number;
   shorthandedGoals: number;
   shorthandedPoints: number;
-  // Include other properties as needed
 }
 
 export interface DraftDetails {
@@ -37,8 +36,8 @@ export interface Player {
   isActive: boolean;
   firstName: { default: string };
   lastName: { default: string };
-  fullTeamName: { default: string }; // Mark as optional to handle potential absence
-  // fullTeamName: string;
+  fullTeamName: { default: string }; 
+  currentTeamAbbrev: string;
   teamLogo: string;
   sweaterNumber: number;
   position: string;
@@ -49,9 +48,9 @@ export interface Player {
   weightInPounds: number;
   weightInKilograms: number;
   birthDate: string;
-  birthCity?: { default: string }; // Mark as optional to handle potential absence
-  birthStateProvince?: { default: string }; // Mark as optional to handle potential absence
-  birthCountry?: { default: string }; // Mark as optional to handle potential absence
+  birthCity?: { default: string };
+  birthStateProvince?: { default: string };
+  birthCountry?: string;
   shootsCatches: string;
   featuredStats: FeaturedStats;
   careerTotals: {

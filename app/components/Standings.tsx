@@ -1,11 +1,12 @@
 // /app/components/Standings.tsx
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { fetchDataFromApi } from '@/app/helpers/api';
+import SortableHeaderCell from './SortableHeaderCell';
+import Sekeleton from './Skeleton';
 import Team from '@/interfaces/Team';
 import SortColumn from '@/interfaces/SortColumn';
-import SortableHeaderCell from './SortableHeaderCell';
-import Image from 'next/image';
 
 const Standings: React.FC = () => {
   const [standings, setStandings] = useState<Team[]>([]);
@@ -55,14 +56,7 @@ const Standings: React.FC = () => {
     });
 
   if (!standings.length) {
-    return( 
-      <div className="flex flex-col gap-4 w-full">
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-      </div>
-    );
+    return <Sekeleton />
   }
 
   return (

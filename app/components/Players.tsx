@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { fetchDataFromApi } from '@/app/helpers/api';
+import Sekeleton from './Skeleton';
 import { Player, PlayerStat } from '@/interfaces/Player';
 import PlayerHero from './PlayerHero';
 
@@ -43,14 +44,10 @@ const Players: React.FC<Props> = ({ playerId }) => {
     const regularSeasonStats = playerData.featuredStats?.regularSeason?.subSeason;
     let statsArray: PlayerStat[] = [regularSeasonStats].filter(Boolean) as PlayerStat[];
 
-    const seasonYear = playerData.featuredStats?.season.toString().slice(2); // Extract last two digits of the year
-    const formattedSeasonYear = `${seasonYear.slice(0, 2)}-${seasonYear.slice(4, 6)}`; // Format as '23-24'
-    
+    const seasonYear = playerData.featuredStats?.season.toString().slice(2);
+    const formattedSeasonYear = `${seasonYear.slice(0, 2)}-${seasonYear.slice(4, 6)}`; 
     return statsArray.map((stat, index) => ({ season: formattedSeasonYear, ...stat }));
   }, [playerData]);
-
-
-
 
   const careerStats = useMemo(() => {
     if (!playerData) return [];
@@ -73,21 +70,13 @@ const Players: React.FC<Props> = ({ playerId }) => {
   };
 
   if (!playerData || !playerData.featuredStats || !playerData.featuredStats.regularSeason || !playerData.featuredStats.regularSeason.subSeason) {
-    return (
-      <div className="flex flex-col gap-4 w-full">
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-      </div>
-    );
+    return <Sekeleton />;
   }
 
   return (
     <>
       <PlayerHero playerData={playerData} />
       <div className="overflow-x-auto">
-
         <table className="table w-full">
           <thead>
             <tr>

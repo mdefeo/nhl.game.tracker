@@ -6,7 +6,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* Add any global meta tags, stylesheets, or scripts here */}
           <meta charSet="UTF-8" />
         </Head>
         <body>

@@ -1,7 +1,6 @@
 // /app/components/NavBar.tsx
 'use client'
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import dynamic from 'next/dynamic';
 
 const NavBarClientSide = dynamic(() => import('@/app/components/NavBarClientSide'), {

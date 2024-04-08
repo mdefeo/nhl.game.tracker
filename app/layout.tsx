@@ -8,7 +8,7 @@ import FooterNav from "@/app/components/FooterNav";
 const inter = Inter({ subsets: ["latin"] });
 
 interface LayoutProps {
-  metadata?: Metadata; // Make metadata optional
+  metadata?: Metadata;
   children: React.ReactNode;
 }
 

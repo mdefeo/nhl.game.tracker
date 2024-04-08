@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fetchDataFromApi } from '@/app/helpers/api';
+import Sekeleton from './Skeleton';
 
 const Scores: React.FC = () => {
   const [games, setGames] = useState<any[]>([]);
@@ -27,12 +28,7 @@ const Scores: React.FC = () => {
   }, []);
 
   if (!games) {
-    return( 
-      <div className="flex flex-col gap-4 w-full columns-2">
-        <div className="skeleton h-8 w-50"></div>
-        <div className="skeleton h-8 w-50"></div>
-      </div>
-    );
+    return <Sekeleton />
   }
 
   return (
