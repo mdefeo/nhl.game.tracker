@@ -1,6 +1,8 @@
 // /interfaces/SortColumn.ts
 import Team from './Team';
-
-type SortColumn = keyof Team;
+interface SortColumn {
+  column: keyof Team | '';
+  order: 'asc' | 'desc';
+}
 
 export default SortColumn;

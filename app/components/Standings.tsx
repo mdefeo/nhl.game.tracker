@@ -5,6 +5,7 @@ import { fetchDataFromApi } from '@/app/helpers/api';
 import Team from '@/interfaces/Team';
 import SortColumn from '@/interfaces/SortColumn';
 import SortableHeaderCell from './SortableHeaderCell';
+import Image from 'next/image';
 
 const Standings: React.FC = () => {
   const [standings, setStandings] = useState<Team[]>([]);
@@ -12,19 +13,19 @@ const Standings: React.FC = () => {
   const [divisionFilter, setDivisionFilter] = useState<string>('All');
   const [conferences, setConferences] = useState<string[]>([]);
   const [divisions, setDivisions] = useState<string[]>([]);
-  const [sortColumn, setSortColumn] = useState<SortColumn | null>(null);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [sortColumn, setSortColumn] = useState<SortColumn>({ column: '', order: 'asc' });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchDataFromApi(`https://api-web.nhle.com/v1/standings/now`);
+        const data = await fetchDataFromApi('https://api-web.nhle.com/v1/standings/now');
+        console.log('data: ', data);
         setStandings(data.standings);
 
-        const uniqueConferences = ['All', ...new Set<string>(data.standings.map((team: Team) => team.conferenceName))];
+        const uniqueConferences = ['All', ...new Set(data.standings.map((team: Team) => team.conferenceName))] as string[];
         setConferences(uniqueConferences);
 
-        const uniqueDivisions = ['All', ...new Set<string>(data.standings.map((team: Team) => team.divisionName))];
+        const uniqueDivisions = ['All', ...new Set(data.standings.map((team: Team) => team.divisionName))] as string[];
         setDivisions(uniqueDivisions);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -34,108 +35,69 @@ const Standings: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleConferenceFilterChange = (value: string) => {
-    setConferenceFilter(value);
-    setDivisionFilter('All');
+
+  const handleSort = (sortParams: { column: keyof Team | ''; order: 'asc' | 'desc' }) => {
+    setSortColumn(sortParams);
   };
 
 
-  const handleDivisionFilterChange = (value: string) => {
-    setDivisionFilter(value);
-    const selectedDivisionTeam = standings.find(team => team.divisionName === value);
-    if (selectedDivisionTeam) {
-      setConferenceFilter(selectedDivisionTeam.conferenceName);
-    }
-  };
-
-  const handleSort = ({ column, order }: { column: keyof Team | null; order: 'asc' | 'desc' }) => {
-    setSortColumn(column);
-    setSortOrder(order);
-  };
-
-
-  const sortedStandings = standings.slice().sort((a, b) => {
-    if (sortColumn !== null) {
-      const aValue = a[sortColumn];
-      const bValue = b[sortColumn];
-
-      if (typeof aValue === 'number' && typeof bValue === 'number') {
-        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
-      } else {
-        const aString = String(aValue);
-        const bString = String(bValue);
-        return sortOrder === 'asc' ? aString.localeCompare(bString) : bString.localeCompare(aString);
+  const sortedAndFilteredStandings = standings
+    .filter(team => conferenceFilter === 'All' || team.conferenceName === conferenceFilter)
+    .filter(team => divisionFilter === 'All' || team.divisionName === divisionFilter)
+    .sort((a, b) => {
+      if (!sortColumn.column) return 0;
+      const valueA = a[sortColumn.column];
+      const valueB = b[sortColumn.column];
+      if (typeof valueA === 'number' && typeof valueB === 'number') {
+        return sortColumn.order === 'asc' ? valueA - valueB : valueB - valueA;
       }
-    } else {
-      return 0;
-    }
-  });
+      return sortColumn.order === 'asc' ? String(valueA).localeCompare(String(valueB)) : String(valueB).localeCompare(String(valueA));
+    });
 
-  const filteredStandings = sortedStandings.filter(team => {
-    const conferenceFilterCondition = conferenceFilter === 'All' || team.conferenceName === conferenceFilter;
-    const divisionFilterCondition = divisionFilter === 'All' || team.divisionName === divisionFilter;
-    return conferenceFilterCondition && divisionFilterCondition;
-  });
+  if (!standings.length) {
+    return( 
+      <div className="flex flex-col gap-4 w-full">
+        <div className="skeleton h-8 w-full"></div>
+        <div className="skeleton h-8 w-full"></div>
+        <div className="skeleton h-8 w-full"></div>
+        <div className="skeleton h-8 w-full"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-x-auto">
-      <div className="flex justify-center space-x-4 mb-4">
-        <div className="flex items-center">
-          <label htmlFor="selectConference" className="px-4">Conference:</label>
-          <select
-            value={conferenceFilter}
-            onChange={e => handleConferenceFilterChange(e.target.value)}
-            className="border border-gray-300 px-4 py-2 rounded"
-            id="selectConference"
-          >
-            {conferences.map((conference, index) => (
-              <option key={index} value={conference}>{conference}</option>
-            ))}
-          </select>
-          <label htmlFor="selectDivision" className="px-4">Division:</label>
-          <select
-            value={divisionFilter}
-            onChange={e => handleDivisionFilterChange(e.target.value)}
-            className="border border-gray-300 px-4 py-2 rounded"
-            id="selectDivision"
-          >
-            {conferenceFilter === 'All' ? divisions.map((division, index) => (
-              <option key={index} value={division}>{division}</option>
-            )) : ['All', ...Array.from(new Set(standings.filter(team => team.conferenceName === conferenceFilter).map(team => team.divisionName)))].map((division, index) => (
-              <option key={index} value={division}>{division}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <table className="w-full border-collapse table-fixed table-zebra table-pin-rows table-pin-cols">
-        <thead className="bg-neutral">
+      <table className="w-full border-collapse table-auto">
+        <thead>
           <tr>
-            <SortableHeaderCell columnName="teamName" label="Team" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="gamesPlayed" label="GP" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="points" label="PTS" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="goalFor" label="GF" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="goalAgainst" label="GA" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
-            <SortableHeaderCell columnName="goalDifferential" label="DIFF" sortColumn={sortColumn} sortOrder={sortOrder} handleSort={handleSort} />
+            <th>Team</th>
+            <SortableHeaderCell<Team> columnName="gamesPlayed" label="GP" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
+            <SortableHeaderCell<Team> columnName="points" label="PTS" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
+            <SortableHeaderCell<Team> columnName="goalFor" label="GF" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
+            <SortableHeaderCell<Team> columnName="goalAgainst" label="GA" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
+            <SortableHeaderCell<Team> columnName="goalDifferential" label="DIFF" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
           </tr>
         </thead>
-        <tbody className="text-sm text-left">
-          {filteredStandings.map((team, index) => {
-            let teamName = team.teamName.default;
-            return (
-              <tr key={index} className="border-b border-gray-200 hover:bg-gray-800">
-                <td className="py-3 px-6 whitespace-nowrap">
-                  <Link href={`/teams/${team.id}`}>
-                    {teamName}
+        <tbody>
+          {sortedAndFilteredStandings.map((team, index) => (
+            <tr key={index} className="hover:bg-secondary">
+              <td className="py-2 px-4">
+                <div className="flex items-center">
+                  <Link href={`/team/${team.teamAbbrev.default}`} className='flex items-center'>
+                    <Image src={team.teamLogo} alt={team.teamName.default} width={32} height={32} unoptimized />
                   </Link>
-                </td>
-                <td className="p-6 whitespace-nowrap">{team.gamesPlayed}</td>
-                <td className="p-6 whitespace-nowrap">{team.points}</td>
-                <td className="p-6 whitespace-nowrap">{team.goalFor}</td>
-                <td className="p-6 whitespace-nowrap">{team.goalAgainst}</td>
-                <td className="p-6 whitespace-nowrap">{team.goalDifferential}</td>
-              </tr>
-            );
-          })}
+                  <Link href={`/team/${team.teamAbbrev.default}`}>
+                    <span className="ml-2">{team.teamName.default}</span>
+                  </Link>
+                </div>
+              </td>
+              <td>{team.gamesPlayed}</td>
+              <td>{team.points}</td>
+              <td>{team.goalFor}</td>
+              <td>{team.goalAgainst}</td>
+              <td>{team.goalDifferential}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

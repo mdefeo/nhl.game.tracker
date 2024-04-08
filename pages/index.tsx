@@ -1,18 +1,14 @@
-// /pages/index.tsx
-import RootLayout from '@/app/layout';
+// /pages/home.tsx
+import Headline from '@/app/components/Headline';
 
-const IndexPage = () => {
-  const metadata = {
-    title: 'Home Page',
-    description: 'Welcome to the home page',
-  };
-
+const HomePage = () => {
   return (
-    <RootLayout metadata={metadata}>
-      {/* Your page content goes here */}
-      <h1>Welcome to the Home Page</h1>
-    </RootLayout>
+    <div>
+      <Headline title="Home" />
+      <p>There is nothing here.</p>
+    </div>
   );
 };
 
-export default IndexPage;
+export default HomePage;
+

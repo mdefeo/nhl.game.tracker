@@ -1,11 +1,20 @@
 // /pages/schedule.tsx
-const SchedulePage = () => {
+import React from 'react';
+import Headline from '@/app/components/Headline';
+import Schedule from '@/app/components/Schedule';
+interface Props {
+  // Define props interface here
+}
+
+const SchedulePage: React.FC<Props> = ({ /* destructure props here */ }) => {
+  // Component logic here
+  
   return (
     <div>
-      <h1>Schedule</h1>
+      <Headline title="Upcoming Games" />
+      <Schedule />
     </div>
   );
 };
 
 export default SchedulePage;
-

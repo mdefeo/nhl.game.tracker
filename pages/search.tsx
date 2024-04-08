@@ -1,11 +1,12 @@
 // /pages/search.tsx
+import Headline from '@/app/components/Headline';
+
 const SearchPage = () => {
   return (
     <div>
-      <h1>Search</h1>
+      <Headline title="Search" />
     </div>
   );
 };
 
 export default SearchPage;
-
