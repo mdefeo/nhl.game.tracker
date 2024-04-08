@@ -99,7 +99,7 @@ const Teams: React.FC<Props> = ({ abbreviation }) => {
                     </div>
                   </div>
                   <div>
-                    <Link href={`/players/${player.playerId}`}>
+                    <Link href={`/player/${player.playerId}`}>
                       {`${player.firstName.default} ${player.lastName.default}`}
                     </Link>
                   </div>
