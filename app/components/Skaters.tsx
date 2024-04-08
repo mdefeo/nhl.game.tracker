@@ -1,16 +1,15 @@
+// /app/components/Skaters.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Skater } from '@/interfaces/Skaters';
-import Skeleton from './Skeleton'; // Assuming you have a Skeleton component
+import Skeleton from './Skeleton';
 
-// Define SortState type
 interface SortState {
   column: string;
   order: 'asc' | 'desc';
 }
 
-// Define SortableHeaderCell component
 interface SortableHeaderCellProps<T> {
   columnName: keyof T | string;
   label: string;

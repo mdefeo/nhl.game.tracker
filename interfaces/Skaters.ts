@@ -1,3 +1,4 @@
+// /interfaces/Skaters.ts
 export interface Skater {
   playerId: number;
   headshot: string;

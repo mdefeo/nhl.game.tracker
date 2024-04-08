@@ -1,3 +1,4 @@
+// /interfaces/PlayerStats.ts
 interface PlayerStats {
   gamesPlayed: number;
   goals: number;

@@ -1,4 +1,4 @@
-// /app/components/stats.tsx
+// /app/components/Players.tsx
 import React from 'react';
 
 interface Props {

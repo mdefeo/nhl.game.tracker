@@ -1,3 +1,4 @@
+// /app/components/Headline.tsx
 import React from 'react';
 
 const Headline: React.FC<{ title: string }> = ({ title }) => {

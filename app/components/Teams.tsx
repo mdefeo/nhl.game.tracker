@@ -1,3 +1,4 @@
+// /app/components/Teams.tsx
 import React, { useEffect, useState } from 'react';
 import Skaters from './Skaters';
 import Goalies from './Goalies';
