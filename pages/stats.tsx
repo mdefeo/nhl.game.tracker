@@ -1,11 +1,12 @@
 // /pages/stats.tsx
+import Headline from '@/app/components/Headline';
+
 const StatsPage = () => {
   return (
     <div>
-      <h1>Stats</h1>
+      <Headline title="Stats" />
     </div>
   );
 };
 
 export default StatsPage;
-

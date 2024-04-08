@@ -1,14 +1,14 @@
 // /pages/scores.tsx
 import Scores from '@/app/components/Scores';
+import Headline from '@/app/components/Headline';
 
 const ScoresPage = () => {
   return (
     <div>
-      <h1>Recent Scores</h1>
+      <Headline title="Recent Scores" />
       <Scores />
     </div>
   );
 };
 
 export default ScoresPage;
-
