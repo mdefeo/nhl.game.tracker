@@ -61,6 +61,14 @@ const NavBarClientSide: React.FC = () => {
         </div>
         <h2 className="text-2xl font-bold">NHL Tracker</h2>
       </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li className={isActive('/players')}><Link href="/players">Players</Link></li>
+          <li className={isActive('/schedule')}><Link href="/schedule">Schedule</Link></li>
+          <li className={isActive('/scores')}><Link href="/scores">Scores</Link></li>
+          <li className={isActive('/standings')}><Link href="/standings">Standings</Link></li>
+        </ul>
+      </div>
       <div className="navbar-end relative">
         <div className="form-control">
           <input
