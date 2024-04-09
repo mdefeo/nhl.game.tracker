@@ -1,10 +1,10 @@
-// /app/components/Schedule.tsx
+// /app/components/league/Schedule.tsx
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { fetchSchedule } from '@/features/schedule/scheduleSlice';
-import Skeleton from './Skeleton';
+import Skeleton from '../utilities/Skeleton';
 
 
 const Schedule: React.FC = () => {
@@ -27,7 +27,7 @@ const Schedule: React.FC = () => {
           <div className="date text-lg font-bold">{day.date} ({day.dayAbbrev})</div>
           <div className="grid md:grid-cols-2 gap-4 my-4">
             {day.games.map((game: any) => (
-              <div key={game.id} className="gameScore bg-neutral rounded p-4 flex justify-between items-center shadow-2xl">
+              <div key={game.id} className="gameScore bg-secondary rounded p-4 flex justify-between items-center shadow-2xl">
                 <div className="flex items-center">
                   <Link href={`/team/${game.homeTeam.abbrev}`}>
                     <Image 

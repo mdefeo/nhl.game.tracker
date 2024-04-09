@@ -1,6 +1,6 @@
 // /interfaces/TeamData.ts
-import Skaters from "@/app/components/Skaters";
-import Goalies from "@/app/components/Goalies";
+import Skaters from "@/app/components/players/Skaters";
+import Goalies from "@/app/components/players/Goalies";
 
 export interface TeamData {
   teamName: string;

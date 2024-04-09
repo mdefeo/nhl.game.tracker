@@ -1,9 +1,9 @@
-// /app/components/Skaters.tsx
+// /app/components/players/Skaters.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Skater } from '@/interfaces/Skaters';
-import Skeleton from './Skeleton';
+import Skeleton from '../utilities/Skeleton';
 
 interface SortState {
   column: string;
@@ -46,7 +46,7 @@ const Skaters: React.FC<Props> = ({ skaters, sortState, setSortState }) => {
   return (
     <>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table w-full table-zebra-zebra">
           <thead>
             <tr>
               <th>Player</th>

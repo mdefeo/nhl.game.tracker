@@ -1,4 +1,4 @@
-// /app/components/SortableHeaderCell.tsx
+// /app/components/utilities/SortableHeaderCell.tsx
 import React from 'react';
 
 interface SortableHeaderCellProps<T> {

@@ -1,9 +1,9 @@
 // /app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import NavBar from "./components/NavBar";
+import NavBar from "@/app/components/nav/NavBar";
 import "@/public/globals.css";
-import FooterNav from "@/app/components/FooterNav";
+import FooterNav from "@/app/components/nav/FooterNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +12,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const RootLayout: React.FC<LayoutProps> = ({ metadata = {}, children }) => {
+const NHLStatTrackerDocumentLayout: React.FC<LayoutProps> = ({ metadata = {}, children }) => {
   const title = typeof metadata.title === 'string' ? metadata.title : 'Fallback Title';
 
   return (
@@ -24,4 +24,4 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata = {}, children }) => {
   );
 };
 
-export default RootLayout;
+export default NHLStatTrackerDocumentLayout;

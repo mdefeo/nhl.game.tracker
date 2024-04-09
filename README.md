@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NHL Game Tracker
 
-## Getting Started
+NHL Game Tracker is a web application designed to provide real-time updates and statistics for NHL games. Whether you're a die-hard fan or just looking to catch up on the latest hockey games, this project provides a clean, interactive interface for all things NHL.
 
-First, run the development server:
+## Installation
+
+To get this project up and running on your local machine for development and testing purposes, follow these steps:
 
 ```bash
+git clone https://github.com/mdefeo/nhl-game-tracker.git
+cd nhl-game-tracker
+npm install
 npm run dev
-# or
+# or if you use yarn
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+After installation, the application will be running on your local server. Open your web browser and navigate to <http://localhost:3000> to view the app.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
+We welcome contributions to the NHL Game Tracker. Please read through our contributing guidelines before submitting pull requests.
 
-To learn more about Next.js, take a look at the following resources:
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Versioning
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+We use SemVer for versioning. For the versions available, see the tags on this repository.
 
-## Deploy on Vercel
+## Authors
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[Marcello De Feo] - Initial work - mdefeo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Acknowledgments
+
+Thanks to the NHL for providing the statistics used in this tracker.
+Appreciation to all contributors and supporters of the project.

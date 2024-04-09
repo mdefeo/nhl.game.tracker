@@ -1,10 +1,10 @@
-// /app/components/Scores.tsx
+// /app/components/league/Scores.tsx
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { fetchScores } from '@/features/scores/scoreSlice';
-import Skeleton from './Skeleton';
+import Skeleton from '../utilities/Skeleton';
 
 const Scores: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ const Scores: React.FC = () => {
           <div className="date text-lg font-bold">{group.date}</div>
           <div className="grid md:grid-cols-2 gap-4 my-4">
             {group.games.map((game: any) => (
-              <div key={game.id} className="gameScore bg-neutral rounded p-4 flex justify-between items-center shadow-2xl">
+              <div key={game.id} className="gameScore bg-secondary rounded p-4 flex justify-between items-center shadow-2xl">
                 <div className={`flex items-center ${game.homeTeam.score > game.awayTeam.score ? 'font-bold winningTeam' : ''}`}>
                   <Link href={`/team/${game.homeTeam.abbrev}`}>
                     <Image 

@@ -1,7 +1,7 @@
-// /app/components/GoalieHero.tsx
+// /app/components/players/GoalieHero.tsx
 import Image from "next/image";
 import Link from "next/link";
-import Skeleton from "@/app/components/Skeleton";
+import Skeleton from "@/app/components/utilities/Skeleton";
 import { Goalie } from "@/interfaces/Goalie";
 
 const GoalieHero: React.FC<{ goalieData: Goalie }> = ({ goalieData }) => {
@@ -12,6 +12,17 @@ const GoalieHero: React.FC<{ goalieData: Goalie }> = ({ goalieData }) => {
   
   return (
     <div className="hero bg-base-200 relative mb-10">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${goalieData.heroImage})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          opacity: '5%',
+        }}
+      >
+      </div>
       <div className="hero-content flex-col lg:flex-row relative">
         <div className="relative">
           <Image

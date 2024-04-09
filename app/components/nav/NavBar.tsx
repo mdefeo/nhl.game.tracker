@@ -1,9 +1,9 @@
-// /app/components/NavBar.tsx
+// /app/components/nav/NavBar.tsx
 'use client'
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-const NavBarClientSide = dynamic(() => import('@/app/components/NavBarClientSide'), {
+const NavBarClientSide = dynamic(() => import('@/app/components/nav/NavBarClientSide'), {
   ssr: false,
 });
 

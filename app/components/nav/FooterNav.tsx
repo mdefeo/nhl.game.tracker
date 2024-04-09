@@ -1,4 +1,4 @@
-// /app/components/FooterNav.tsx
+// /app/components/nav/FooterNav.tsx
 import React from 'react';
 
 interface Props {

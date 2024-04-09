@@ -1,4 +1,4 @@
-// /app/components/Skeleton.tsx
+// /app/components/utilities/Skeleton.tsx
 const Skeleton: React.FC = () => {
   return( 
     <div className="flex flex-col gap-4 w-full">

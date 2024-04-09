@@ -3,8 +3,7 @@ import React from 'react';
 import Layout from '@/app/layout'; 
 import { NextPageWithLayout } from '@/types';
 import { useRouter } from 'next/router';
-import Players from '@/app/components/Player';
-import Headline from '@/app/components/Headline';
+import Players from '@/app/components/players/Player';
 
 const PlayerPage: NextPageWithLayout = () => {
   const router = useRouter();
@@ -12,7 +11,6 @@ const PlayerPage: NextPageWithLayout = () => {
 
   return (
     <div>
-      <Headline title="Player" />
       <Players playerId={playerId as string} />
     </div>
   );
