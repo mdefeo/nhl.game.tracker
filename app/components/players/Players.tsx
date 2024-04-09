@@ -19,7 +19,7 @@ export const Players: React.FC = () => {
 
   const renderLeadersTable = (leaders: PlayerLeader[], title: string) => (
     <div className={`${activeTab === title.toLowerCase() ? '' : 'hidden'} mt-10`}>
-      <table className="table-auto w-full">
+      <table className="table-auto w-full table-zebra-zebra">
         <thead>
           <tr>
             <th>Player</th>
