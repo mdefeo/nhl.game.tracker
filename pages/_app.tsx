@@ -1,14 +1,17 @@
-// /pages/_app.tsx
+// pages/_app.tsx
 import React from 'react';
-import type { AppProps } from 'next/app';
-import Layout from '@/app/layout';
+import { Provider } from 'react-redux';
+import { store } from '@/app/store';
+import { AppPropsWithLayout } from '@/types';
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const NHLStatTracker: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
+  const getLayout = Component.getLayout || ((page) => <>{page}</>);
+
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      {getLayout(<Component {...pageProps} />)}
+    </Provider>
   );
 };
 
-export default MyApp;
+export default NHLStatTracker;

@@ -2,11 +2,10 @@
 import React from 'react';
 import Headline from '@/app/components/Headline';
 import Schedule from '@/app/components/Schedule';
-interface Props {
-}
+import Layout from '@/app/layout';
+import { NextPageWithLayout } from '@/types';
 
-const SchedulePage: React.FC<Props> = ({ }) => {
-  
+const SchedulePage: NextPageWithLayout = () => {
   return (
     <div>
       <Headline title="Upcoming Games" />
@@ -14,5 +13,7 @@ const SchedulePage: React.FC<Props> = ({ }) => {
     </div>
   );
 };
+
+SchedulePage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default SchedulePage;

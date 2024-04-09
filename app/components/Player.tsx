@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { fetchDataFromApi } from '@/app/helpers/api';
 import Skeleton from './Skeleton';
 import { Player, PlayerStat } from '@/interfaces/Player';
-import PlayerHero from './PlayerHero';
+import PlayerHero from './heroes/PlayerHero';
 
 interface Props {
   playerId: string;

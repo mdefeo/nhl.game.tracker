@@ -1,14 +1,18 @@
-// /pages/home.tsx
+// /pages/index.tsx
+import React from 'react';
 import Headline from '@/app/components/Headline';
+import Layout from '@/app/layout'; 
+import { NextPageWithLayout } from '@/types';
 
-const HomePage = () => {
+const HomePage: NextPageWithLayout = () => {
   return (
     <div>
       <Headline title="Home" />
-      <p>There is nothing here.</p>
+      <p></p>
     </div>
   );
 };
 
-export default HomePage;
+HomePage.getLayout = (page) => <Layout>{page}</Layout>;
 
+export default HomePage;

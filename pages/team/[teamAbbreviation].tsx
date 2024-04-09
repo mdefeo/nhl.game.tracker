@@ -1,18 +1,24 @@
 // /pages/team/[teamAbbreviation].tsx
+
+import React from 'react';
+import Team from '@/app/components/Team';
 import Headline from '@/app/components/Headline';
-import Teams from '@/app/components/Teams';
+import Layout from '@/app/layout'; 
+import { NextPageWithLayout } from '@/types';
 import { useRouter } from 'next/router';
 
-const TeamPage = () => {
+const TeamPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { teamAbbreviation } = router.query;
 
   return (
     <div>
       <Headline title="Team" />
-      <Teams abbreviation={teamAbbreviation as string} />
+      <Team abbreviation={teamAbbreviation as string} />
     </div>
   );
 };
+
+TeamPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default TeamPage;

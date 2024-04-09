@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { fetchDataFromApi } from '@/app/helpers/api';
 import Skeleton from './Skeleton';
 import { Goalie, GoalieStat } from '@/interfaces/Goalie';
-import GoalieHero from './GoalieHero';
+import GoalieHero from './heroes/GoalieHero';
 
 interface Props {
   goalieId: string;
@@ -48,7 +48,6 @@ const Goalies: React.FC<Props> = ({ goalieId }) => {
 
     const seasonYear = goalieData.featuredStats?.season.toString().slice(2);
     const formattedSeasonYear = `${seasonYear.slice(0, 2)}-${seasonYear.slice(4, 6)}`; 
-    console.log('---regularSeasonStats: ', regularSeasonStats);
     return statsArray.map((stat, index) => ({ ...stat, season: formattedSeasonYear }));
   }, [goalieData]);
 
@@ -57,7 +56,6 @@ const Goalies: React.FC<Props> = ({ goalieId }) => {
     if (!goalieData) return [];
 
     const careerStats = goalieData.careerTotals?.regularSeason;
-    console.log('---careerStats: ', careerStats);
     if (!careerStats) return [];
 
     return [careerStats];

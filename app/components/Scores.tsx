@@ -1,36 +1,30 @@
 // /app/components/Scores.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { fetchDataFromApi } from '@/app/helpers/api';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { fetchScores } from '@/features/scores/scoreSlice';
 import Skeleton from './Skeleton';
 
 const Scores: React.FC = () => {
-  const [games, setGames] = useState<any[]>([]);
-  const [scoreGroups, setScoreGroups] = useState<any[]>([]);
+  const dispatch = useAppDispatch();
+  const { scoreGroups, status, error } = useAppSelector((state) => state.scores);
 
   useEffect(() => {
-    const fetchScores = async () => {
-      try {
-        const data = await fetchDataFromApi('https://api-web.nhle.com/v1/scoreboard/now');
-        const gamesByDate = data.gamesByDate;
-        const scoreGroups = gamesByDate.map((group: any) => ({
-          date: group.date,
-          games: group.games,
-        }));
-        setScoreGroups(scoreGroups);
-      } catch (error) {
-        console.error('Error fetching scores:', error);
-      }
-    };
+    dispatch(fetchScores());
+  }, [dispatch]);
 
-    fetchScores();
-  }, []);
-
-  if (!games) {
-    return <Skeleton />
+  // Loading state
+  if (status === 'loading') {
+    return <Skeleton />;
   }
 
+  // Error state
+  if (status === 'failed') {
+    return <div>Error fetching scores: {error}</div>;
+  }
+
+  // Display scores
   return (
     <div className="scores-page">
       {scoreGroups.map((group) => (
@@ -41,7 +35,7 @@ const Scores: React.FC = () => {
               <div key={game.id} className="gameScore bg-neutral rounded p-4 flex justify-between items-center shadow-2xl">
                 <div className={`flex items-center ${game.homeTeam.score > game.awayTeam.score ? 'font-bold winningTeam' : ''}`}>
                   <Link href={`/team/${game.homeTeam.abbrev}`}>
-                  <Image 
+                    <Image 
                       src={game.homeTeam.logo} 
                       alt={game.homeTeam.name.default} 
                       className="w-8 h-8 mr-2"
@@ -49,7 +43,6 @@ const Scores: React.FC = () => {
                       height={50}
                     />
                   </Link>
-                   
                   <div className="mr-2">
                     <Link href={`/team/${game.homeTeam.abbrev}`}>
                       {game.homeTeam.name.default}
@@ -59,19 +52,19 @@ const Scores: React.FC = () => {
                 </div>
                 <div className={`flex items-center ${game.awayTeam.score > game.homeTeam.score ? 'font-bold winningTeam' : ''}`}>
                   <Link href={`/team/${game.awayTeam.abbrev}`}>
-                  <Image 
-                    src={game.awayTeam.logo} 
-                    alt={game.awayTeam.name.default}
-                    className="w-8 h-8 mr-2"
-                    width={50}
-                    height={50}
-                  />
+                    <Image 
+                      src={game.awayTeam.logo} 
+                      alt={game.awayTeam.name.default}
+                      className="w-8 h-8 mr-2"
+                      width={50}
+                      height={50}
+                    />
                   </Link>
                   <div className="mr-2">
                     <Link href={`/team/${game.awayTeam.abbrev}`}>
                       {game.awayTeam.name.default}
                     </Link>
-                    </div>
+                  </div>
                   <div>{game.awayTeam.score}</div>
                 </div>
               </div>

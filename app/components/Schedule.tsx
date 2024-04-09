@@ -1,30 +1,24 @@
 // /app/components/Schedule.tsx
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image'; // Import Image from next/image
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { fetchDataFromApi } from '@/app/helpers/api';
+import Image from 'next/image';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { fetchSchedule } from '@/features/schedule/scheduleSlice';
 import Skeleton from './Skeleton';
 
+
 const Schedule: React.FC = () => {
-  const [gameWeek, setGameWeek] = useState<any[]>([]);
-  const today = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
+  const dispatch = useAppDispatch();
+  const { gameWeek, status, error } = useAppSelector((state) => state.schedule);
+  const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
-    const fetchSchedule = async () => {
-      try {
-        const data = await fetchDataFromApi(`https://api-web.nhle.com/v1/schedule/${today}`);
-        setGameWeek(data.gameWeek);
-      } catch (error) {
-        console.error('Error fetching schedule:', error);
-      }
-    };
+    dispatch(fetchSchedule(today));
+  }, [dispatch, today]);
 
-    fetchSchedule();
-  }, [today]); // Trigger useEffect whenever 'today' changes
+  if (status === 'loading') return <Skeleton />;
+  if (status === 'failed') return <div>Error: {error}</div>;
 
-  if (!gameWeek) {
-    return <Skeleton />
-  }
 
   return (
     <div className="schedule-page">

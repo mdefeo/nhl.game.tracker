@@ -1,16 +1,17 @@
-// /app/helpers/api.tsx
-export const fetchDataFromApi = async (url: string) => {
+// /app/helpers/api.ts
+async function fetchDataFromApi(url: string): Promise<any> {
   try {
     const apiUrl =`/api/proxy?url=${url}`;
-    console.log('---API_FULL_URL: ', apiUrl);
+    //  console.log('---API_FULL_URL: ', apiUrl);
     const response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error('Failed to fetch data');
+      throw new Error('Network response was not ok');
     }
-    const data = await response.json();
-    return data;
+    return response.json();
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Failed to fetch data: ", error);
     throw error;
   }
-};
+}
+
+export { fetchDataFromApi };

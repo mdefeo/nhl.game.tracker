@@ -69,7 +69,7 @@ const Skaters: React.FC<Props> = ({ skaters, sortState, setSortState }) => {
           </thead>
           <tbody>
             {skaters.map((player) => (
-              <tr key={player.playerId}>
+              <tr key={player.playerId} className="hover:bg-secondary">
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
