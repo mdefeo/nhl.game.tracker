@@ -1,5 +1,5 @@
-// /app/components/TeamHero.tsx
-import Skeleton from "@/app/components/Skeleton";
+// /app/components/teams/TeamHero.tsx
+import Skeleton from "@/app/components/utilities/Skeleton";
 import Team from "@/interfaces/Team";
 
 const TeamHero: React.FC<{ teamAbbreviation: Team }> = ({ teamAbbreviation }) => {

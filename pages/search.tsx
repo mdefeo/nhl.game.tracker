@@ -1,7 +1,7 @@
 // /pages/stats.tsx
 import React from 'react';
-import Search from '@/app/components/Search';
-import Headline from '@/app/components/Headline';
+import Search from '@/app/components/utilities/Search';
+import Headline from '@/app/components/utilities/Headline';
 import Layout from '@/app/layout'; 
 import { NextPageWithLayout } from '@/types';
 

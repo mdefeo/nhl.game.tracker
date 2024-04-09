@@ -1,7 +1,7 @@
 // /pages/schedule.tsx
 import React from 'react';
-import Headline from '@/app/components/Headline';
-import Schedule from '@/app/components/Schedule';
+import Headline from '@/app/components/utilities/Headline';
+import Schedule from '@/app/components/league/Schedule';
 import Layout from '@/app/layout';
 import { NextPageWithLayout } from '@/types';
 

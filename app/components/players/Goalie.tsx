@@ -1,9 +1,9 @@
-// /app/components/Goalie.tsx
+// /app/components/players/Goalie.tsx
 import React, { useState, useEffect, useMemo } from 'react';
 import { fetchDataFromApi } from '@/app/helpers/api';
-import Skeleton from './Skeleton';
+import Skeleton from '../utilities/Skeleton';
 import { Goalie, GoalieStat } from '@/interfaces/Goalie';
-import GoalieHero from './heroes/GoalieHero';
+import GoalieHero from './GoalieHero';
 
 interface Props {
   goalieId: string;
@@ -80,7 +80,7 @@ const Goalies: React.FC<Props> = ({ goalieId }) => {
     <>
       <GoalieHero goalieData={goalieData} />
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table w-full table-zebra-zebra">
           <thead>
             <tr>
               <th>Season</th>

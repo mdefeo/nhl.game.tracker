@@ -1,8 +1,8 @@
 // /pages/team/[teamAbbreviation].tsx
 
 import React from 'react';
-import Team from '@/app/components/Team';
-import Headline from '@/app/components/Headline';
+import Team from '@/app/components/teams/Team';
+import Headline from '@/app/components/utilities/Headline';
 import Layout from '@/app/layout'; 
 import { NextPageWithLayout } from '@/types';
 import { useRouter } from 'next/router';
@@ -13,7 +13,6 @@ const TeamPage: NextPageWithLayout = () => {
 
   return (
     <div>
-      <Headline title="Team" />
       <Team abbreviation={teamAbbreviation as string} />
     </div>
   );

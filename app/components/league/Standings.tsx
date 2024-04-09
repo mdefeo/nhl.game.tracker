@@ -1,10 +1,10 @@
-// /app/components/Standings.tsx
+// /app/components/league/Standings.tsx
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchDataFromApi } from '@/app/helpers/api';
-import SortableHeaderCell from './SortableHeaderCell';
-import Skeleton from './Skeleton';
+import SortableHeaderCell from '../utilities/SortableHeaderCell';
+import Skeleton from '../utilities/Skeleton';
 import Team from '@/interfaces/Team';
 import SortColumn from '@/interfaces/SortColumn';
 
@@ -61,9 +61,10 @@ const Standings: React.FC = () => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full border-collapse table-auto">
+      <table className="w-full border-collapse table-auto table-zebra-zebra">
         <thead>
           <tr>
+            <th>Rank</th>
             <th>Team</th>
             <SortableHeaderCell<Team> columnName="gamesPlayed" label="GP" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
             <SortableHeaderCell<Team> columnName="points" label="PTS" sortColumn={sortColumn.column} sortOrder={sortColumn.order} handleSort={handleSort} />
@@ -75,6 +76,7 @@ const Standings: React.FC = () => {
         <tbody>
           {sortedAndFilteredStandings.map((team, index) => (
             <tr key={index} className="hover:bg-secondary">
+              <td>{index + 1}</td>
               <td className="py-2 px-4">
                 <div className="flex items-center">
                   <Link href={`/team/${team.teamAbbrev.default}`} className='flex items-center'>

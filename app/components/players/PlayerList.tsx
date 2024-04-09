@@ -1,6 +1,6 @@
-// /app/components/PlayerList.tsx
+// /app/components/players/PlayerList.tsx
 import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchPlayers } from '@/features/players/playerSlice';
 
 const PlayerList = () => {

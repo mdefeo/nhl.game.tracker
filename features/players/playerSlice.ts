@@ -1,45 +1,55 @@
-// /features/players/playerSlice.ts
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchDataFromApi } from '@/app/helpers/api';
-import { RootState, AppDispatch } from '@/app/store';
+import { PlayerLeader } from '@/interfaces/Players';
 
-interface Player {
-  id: string;
-  name: string;
-  position: string;
-}
+// Async thunk for fetching player stats leaders
+const fetchStatsLeaders = createAsyncThunk(
+  'players/fetchStatsLeaders',
+  async (statCategory: 'points' | 'goals' | 'assists') => {
+    const apiUrl = `https://api-web.nhle.com/v1/skater-stats-leaders/20222023/2?categories=${statCategory}&limit=20`;
+    const data = await fetchDataFromApi(apiUrl);
+    return { statCategory, data: data[statCategory] };
+  }
+);
 
-interface PlayerState {
-  players: Player[];
+// Initial state of the slice
+interface PlayersState {
+  pointsLeaders: PlayerLeader[];
+  goalsLeaders: PlayerLeader[];
+  assistsLeaders: PlayerLeader[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
 
-const initialState: PlayerState = {
-  players: [],
+const initialState: PlayersState = {
+  pointsLeaders: [],
+  goalsLeaders: [],
+  assistsLeaders: [],
   status: 'idle',
   error: null,
 };
 
-export const fetchPlayers = createAsyncThunk<Player[]>('players/fetchPlayers', async () => {
-  const data = await fetchDataFromApi('https://api.example.com/players');
-  return data as Player[];
-});
-
-const playerSlice = createSlice({
+export const playerSlice = createSlice({
   name: 'players',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPlayers.pending, (state) => {
+      .addCase(fetchStatsLeaders.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchPlayers.fulfilled, (state, action: PayloadAction<Player[]>) => {
+      .addCase(fetchStatsLeaders.fulfilled, (state, action) => {
+        const { statCategory, data } = action.payload;
         state.status = 'succeeded';
-        state.players = action.payload;
+        if (statCategory === 'points') {
+          state.pointsLeaders = data;
+        } else if (statCategory === 'goals') {
+          state.goalsLeaders = data;
+        } else if (statCategory === 'assists') {
+          state.assistsLeaders = data;
+        }
       })
-      .addCase(fetchPlayers.rejected, (state, action) => {
+      .addCase(fetchStatsLeaders.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message || null;
       });
@@ -47,3 +57,4 @@ const playerSlice = createSlice({
 });
 
 export default playerSlice.reducer;
+export { fetchStatsLeaders };

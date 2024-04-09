@@ -1,11 +1,11 @@
-// /app/components/Team.tsx
+// /app/components/teams/Team.tsx
 import React, { useEffect, useState } from 'react';
-import Skaters from './Skaters';
-import Goalies from './Goalies';
-import Headline from './Headline';
+import Skaters from '../players/Skaters';
+import Goalies from '../players/Goalies';
+import Headline from '../utilities/Headline';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { fetchTeamData } from '@/features/team/teamSlice';
-import Skeleton from './Skeleton';
+import Skeleton from '../utilities/Skeleton';
 
 interface Props {
   abbreviation: string;

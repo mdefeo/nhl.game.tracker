@@ -1,6 +1,6 @@
 // /pages/index.tsx
 import React from 'react';
-import Headline from '@/app/components/Headline';
+import Headline from '@/app/components/utilities/Headline';
 import Layout from '@/app/layout'; 
 import { NextPageWithLayout } from '@/types';
 

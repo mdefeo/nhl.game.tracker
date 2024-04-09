@@ -1,9 +1,9 @@
-// /app/components/Goalies.tsx
+// /app/components/players/Goalies.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Goalie } from '@/interfaces/Goalies';
-import Skeleton from './Skeleton'; // Assuming the path is correct
+import Skeleton from '../utilities/Skeleton'; // Assuming the path is correct
 
 interface Props {
   goalies: Goalie[];
@@ -20,7 +20,7 @@ const Goalies: React.FC<Props> = ({ goalies }) => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table w-full">
+      <table className="table w-full table-zebra-zebra">
         <thead>
           <tr>
             <th>Goalie</th>

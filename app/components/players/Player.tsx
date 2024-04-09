@@ -1,9 +1,10 @@
-// /app/components/Player.tsx
+// /app/components/players/Player.tsx
 import React, { useState, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 import { fetchDataFromApi } from '@/app/helpers/api';
-import Skeleton from './Skeleton';
+import Skeleton from '../utilities/Skeleton';
 import { Player, PlayerStat } from '@/interfaces/Player';
-import PlayerHero from './heroes/PlayerHero';
+import PlayerHero from './PlayerHero';
 
 interface Props {
   playerId: string;
@@ -76,9 +77,20 @@ const Players: React.FC<Props> = ({ playerId }) => {
 
   return (
     <>
+      {/*
+      <div className="w-full h-200 mb-10 overflow-hidden">
+        <Image 
+          src={playerData.heroImage}
+          alt={`${playerData.firstName.default} ${playerData.lastName.default}`}
+          height={1269}
+          width={729}
+          className="w-full h-auto"
+        />
+      </div>
+      */}
       <PlayerHero playerData={playerData} />
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table w-full table-zebra-zebra">
           <thead>
             <tr>
               <th>Season</th>

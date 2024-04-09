@@ -4,6 +4,7 @@ import playerReducer from '@/features/players/playerSlice';
 import scoresReducer from '@/features/scores/scoreSlice';
 import scheduleReducer from '@/features/schedule/scheduleSlice';
 import teamReducer from '@/features/team/teamSlice';
+import searchReducer from '../features/search/searchSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     scores: scoresReducer,
     schedule: scheduleReducer,
     team: teamReducer,
+    search: searchReducer,
   },
 });
 

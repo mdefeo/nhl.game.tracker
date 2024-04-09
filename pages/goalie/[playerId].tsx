@@ -1,8 +1,8 @@
 // /pages/goalie/[playerId].tsx
 import React from 'react';
 import { useRouter } from 'next/router';
-import Goalie from '@/app/components/Goalie';
-import Headline from '@/app/components/Headline';
+import Goalie from '@/app/components/players/Goalie';
+import Headline from '@/app/components/utilities/Headline';
 import Layout from '@/app/layout'; 
 import { NextPageWithLayout } from '@/types';
 
@@ -12,7 +12,6 @@ const GoaliePage: NextPageWithLayout = () => {
 
   return (
     <div>
-      <Headline title="Goalie" />
       <Goalie goalieId={playerId as string} />
       <p></p>
     </div>

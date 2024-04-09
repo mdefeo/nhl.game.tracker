@@ -1,17 +1,19 @@
 // /pages/players.tsx
-import Headline from '@/app/components/Headline';
+import React from 'react';
+import { Players } from '@/app/components/players/Players';
+import Headline from '@/app/components/utilities/Headline'; // Adjust path as necessary
 import Layout from '@/app/layout'; 
+import { NextPageWithLayout } from '@/types';
 
-const PlayersPage = () => {
+const PlayersPage: NextPageWithLayout = () => {
   return (
     <div>
-      <Headline title="Players" />
+      <Headline title="Stat Leaders" />
+      <Players />
     </div>
   );
 };
 
-PlayersPage.getLayout = function getLayout(page: React.ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+PlayersPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default PlayersPage;

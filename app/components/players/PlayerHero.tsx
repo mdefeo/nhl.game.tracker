@@ -1,7 +1,7 @@
-// /app/components/PlayerHero.tsx
+// /app/components/players/PlayerHero.tsx
 import Image from "next/image";
 import Link from "next/link";
-import Skeleton from "@/app/components/Skeleton";
+import Skeleton from "@/app/components/utilities/Skeleton";
 import { Player } from "@/interfaces/Player";
 
 const PlayerHero: React.FC<{ playerData: Player }> = ({ playerData }) => {
@@ -11,6 +11,17 @@ const PlayerHero: React.FC<{ playerData: Player }> = ({ playerData }) => {
   
   return (
     <div className="hero bg-base-200 relative mb-10">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${playerData.heroImage})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          opacity: '5%',
+        }}
+      >
+      </div>
       <div className="hero-content flex-col lg:flex-row relative">
         <div className="relative">
           <Image
