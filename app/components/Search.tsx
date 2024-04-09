@@ -1,4 +1,4 @@
-// /app/components/search.tsx
+// /app/components/Search.tsx
 import React from 'react';
 
 interface Props {

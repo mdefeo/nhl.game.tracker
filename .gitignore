@@ -10,6 +10,7 @@ dist/
 build/
 *.log
 .next
+.next/
 
 # OS generated files
 .DS_Store

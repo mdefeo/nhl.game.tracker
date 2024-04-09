@@ -1,3 +1,4 @@
+// /interfaces/Player.ts
 export interface FeaturedStats {
   season: number;
   regularSeason: {
