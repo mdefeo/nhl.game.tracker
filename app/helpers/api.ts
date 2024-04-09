@@ -12,7 +12,7 @@ async function fetchDataFromApi(url: string): Promise<any> {
 
   try {
     const apiUrl = `/api/proxy?url=${encodeURIComponent(url)}`;
-    console.log('---apiUrl: ', apiUrl);
+    // console.log('---apiUrl: ', apiUrl);
     const response = await fetch(apiUrl);
     if (!response.ok) {
       if (cachedData) {

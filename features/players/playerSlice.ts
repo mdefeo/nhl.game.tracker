@@ -12,7 +12,6 @@ const fetchStatsLeaders = createAsyncThunk(
   }
 );
 
-// Initial state of the slice
 interface PlayersState {
   pointsLeaders: PlayerLeader[];
   goalsLeaders: PlayerLeader[];

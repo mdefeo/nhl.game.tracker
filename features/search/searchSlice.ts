@@ -53,7 +53,7 @@ export const fetchSearchResults = createAsyncThunk(
 
       // Combine skater and goalie results
       const combinedResults = [...filteredSkaters, ...filteredGoalies];
-      console.log('---combinedResults', combinedResults);
+      // console.log('---combinedResults', combinedResults);
       return combinedResults;
     } catch (error) {
       console.error("Failed to fetch search results:", error);

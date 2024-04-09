@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { useDebounce } from 'use-debounce';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { fetchSearchResults } from '@/features/search/searchSlice';
