@@ -10,12 +10,10 @@ const PlayerPage: NextPageWithLayout = () => {
   const { playerId } = router.query;
 
   return (
-    <div>
-      <Players playerId={playerId as string} />
-    </div>
+    <Players playerId={playerId as string} />
   );
 };
 
-PlayerPage.getLayout = (page) => <Layout>{page}</Layout>;
+PlayerPage.getLayout = (page) => <Layout metadata={{ title: 'Player', description: 'Player stats'}}>{page}</Layout>;
 
 export default PlayerPage;

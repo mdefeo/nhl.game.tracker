@@ -2,7 +2,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Goalie from '@/app/components/players/Goalie';
-import Headline from '@/app/components/utilities/Headline';
 import Layout from '@/app/layout'; 
 import { NextPageWithLayout } from '@/types';
 
@@ -11,13 +10,10 @@ const GoaliePage: NextPageWithLayout = () => {
   const { playerId } = router.query;
 
   return (
-    <div>
-      <Goalie goalieId={playerId as string} />
-      <p></p>
-    </div>
+    <Goalie goalieId={playerId as string} />
   );
 };
 
-GoaliePage.getLayout = (page) => <Layout>{page}</Layout>;
+GoaliePage.getLayout = (page) => <Layout metadata={{ title: 'Goalie', description: 'Goalie stats'}}>{page}</Layout>;
 
 export default GoaliePage;

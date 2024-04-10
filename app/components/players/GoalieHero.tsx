@@ -11,7 +11,7 @@ const GoalieHero: React.FC<{ goalieData: Goalie }> = ({ goalieData }) => {
   }
   
   return (
-    <div className="hero bg-base-200 relative mb-10">
+    <div className="hero bg-base-200 relative my-10">
       <div
         className="absolute inset-0"
         style={{

@@ -37,8 +37,10 @@ const Teams: React.FC<Props> = ({ abbreviation }) => {
         <>
           <Headline title="Skaters" />
           <Skaters skaters={teamData.skaters} sortState={sortState} setSortState={setSortState} />
-          <Headline title="Goalies" />
-          <Goalies goalies={teamData.goalies} />
+          <div className="mt-10">
+            <Headline title="Goalies" />
+            <Goalies goalies={teamData.goalies} />
+          </div>
         </>
       )}
     </>

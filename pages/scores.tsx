@@ -7,13 +7,13 @@ import { NextPageWithLayout } from '@/types';
 
 const ScoresPage: NextPageWithLayout = () => {
   return (
-    <div>
+    <> 
       <Headline title="Scores" />
       <Scores />
-    </div>
+    </>
   );
 };
 
-ScoresPage.getLayout = (page) => <Layout>{page}</Layout>;
+ScoresPage.getLayout = (page) => <Layout metadata={{ title: 'Scores', description: 'Recent game scores'}}>{page}</Layout>;
 
 export default ScoresPage;
