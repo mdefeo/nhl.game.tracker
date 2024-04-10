@@ -68,12 +68,12 @@ const FooterNav: React.FC<Props> = ({ }) => {
           Personal
         </Link>
       <Link 
-        href="" 
+        href="https://www.nhl.com/" 
         className="link link-hover"
         target="_blank" 
         rel="noopener noreferrer"
       >
-        Press kit
+        NHL
       </Link>
     </nav> 
     <nav>
