@@ -14,7 +14,7 @@ const HomePage: NextPageWithLayout = () => {
 
       <div>
         <Headline title="NHL Stat Tracker" />
-        <p className="mb-4">Welcome to the NHL Stat Tracker. This is an open source project that people are encouraged to use. Contributions are more than welcome! There is a public repository located on <Link href="https://github.com/mdefeo/nhl.game.tracker">>GitHub</Link>.</p>
+        <p className="mb-4">Welcome to the NHL Stat Tracker. This is an open source project that people are encouraged to use. Contributions are more than welcome! There is a public repository located on <Link href="https://github.com/mdefeo/nhl.game.tracker">GitHub</Link>.</p>
         <p className="mb-4">This application is built using the following:</p>
         <ul className="list-disc list-outside ml-4 mb-4">
           <li>Node.js</li>
