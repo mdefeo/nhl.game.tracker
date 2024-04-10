@@ -54,26 +54,26 @@ const FooterNav: React.FC<Props> = ({ }) => {
         Repository
       </Link>
       <Link 
-        href="https://github.com/Zmalski/NHL-API-Reference" 
+        href="https://github.com/mdefeo/nhl.game.tracker/blob/main/README.md" 
         className="link link-hover"
         target="_blank" 
         rel="noopener noreferrer"
-        >API Docs</Link>
+        >Docs</Link>
       <Link 
-        href="https://marcellodefeo.com/" 
+        href="https://github.com/mdefeo/nhl.game.tracker/issues"
         className="link link-hover"
         target="_blank" 
         rel="noopener noreferrer"
         >
-          Personal
+          Issues
         </Link>
       <Link 
-        href="https://www.nhl.com/" 
+        href="https://marcellodefeo.com/"
         className="link link-hover"
         target="_blank" 
         rel="noopener noreferrer"
       >
-        NHL
+        Personal
       </Link>
     </nav> 
     <nav>
