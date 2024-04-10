@@ -59,7 +59,7 @@ const NavBarClientSide: React.FC = () => {
             <li className={isActive('/standings')}><Link href="/standings">Standings</Link></li>
           </ul>
         </div>
-        <h2 className="text-2xl font-bold">NHL Tracker</h2>
+        <h2 className="text-2xl font-bold"><Link href="/">NHL Tracker</Link></h2>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
