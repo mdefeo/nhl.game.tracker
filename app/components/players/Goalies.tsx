@@ -19,7 +19,7 @@ const Goalies: React.FC<Props> = ({ goalies }) => {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mb-5">
       <table className="table w-full table-zebra-zebra">
         <thead>
           <tr>

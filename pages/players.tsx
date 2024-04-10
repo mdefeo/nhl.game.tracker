@@ -7,13 +7,13 @@ import { NextPageWithLayout } from '@/types';
 
 const PlayersPage: NextPageWithLayout = () => {
   return (
-    <div>
+    <>
       <Headline title="Stat Leaders" />
       <Players />
-    </div>
+    </>
   );
 };
 
-PlayersPage.getLayout = (page) => <Layout>{page}</Layout>;
+PlayersPage.getLayout = (page) => <Layout metadata={{ title: 'Players', description: 'Player stats'}}>{page}</Layout>;
 
 export default PlayersPage;
